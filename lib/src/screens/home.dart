@@ -12,7 +12,6 @@ class MyHomeScreen extends StatefulWidget {
   _MyHomeScreenState createState() => _MyHomeScreenState();
 }
 class _MyHomeScreenState extends State<MyHomeScreen> {
-  int _currentTabIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +39,5 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
       ),
     );
   }
-
-
-  void _changeTab(int nextTabIndex) {
-    setState(() {
-      _currentTabIndex = nextTabIndex;
-    });
-  }
+  
 }
