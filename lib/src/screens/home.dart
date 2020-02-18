@@ -13,6 +13,9 @@ class MyHomeScreen extends StatefulWidget {
 }
 class _MyHomeScreenState extends State<MyHomeScreen> {
 
+
+  var texts = [0, 1];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,12 +33,12 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
           );
         },
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-          ],
-        ),
+      body: Consumer<AppNotifier>(
+        builder: (context, appNotifier, _){
+          return Center(
+            child: Text('Page ${texts[appNotifier.selectedTabItemIndex]}')
+          );
+        },
       ),
     );
   }
