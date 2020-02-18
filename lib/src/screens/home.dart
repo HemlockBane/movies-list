@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movies_list_app/src/notifiers/app_notifier.dart';
 import 'package:movies_list_app/src/widgets/bottom_app_bar.dart';
+import 'package:provider/provider.dart';
 
 
 class MyHomeScreen extends StatefulWidget {
@@ -18,11 +20,16 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      bottomNavigationBar: AppBottomNavigationBar(
-        items: [
-          AppBottomNavigationBarItem(iconData: Icons.whatshot, text: 'All'),
-          AppBottomNavigationBarItem(iconData: Icons.star, text: 'Favourites'),
-        ],
+      bottomNavigationBar: Consumer<AppNotifier>(
+        builder: (context, appNotifier, _){
+          return AppBottomNavigationBar(
+            selectedItemIndex: appNotifier.selectedTabItemIndex,
+            items: [
+              AppBottomNavigationBarItem(iconData: Icons.whatshot, text: 'All'),
+              AppBottomNavigationBarItem(iconData: Icons.star, text: 'Favourites'),
+            ],
+          );
+        },
       ),
       body: Center(
         child: Column(

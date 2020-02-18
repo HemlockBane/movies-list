@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:movies_list_app/src/notifiers/app_notifier.dart';
 
 
 class AppBottomNavigationBarItem {
@@ -16,17 +17,17 @@ class AppBottomNavigationBar extends StatefulWidget {
   final Color selectedColor;
   final double height;
   final double iconSize;
+  final int selectedItemIndex;
 
 
   const AppBottomNavigationBar(
-    {this.items, this.color = Colors.grey, this.selectedColor = Colors.black, this.height = 60, this.iconSize = 24});
+    {this.selectedItemIndex, this.items, this.color = Colors.grey, this.selectedColor = Colors.black, this.height = 60, this.iconSize = 24});
 
   @override
   _AppBottomNavigationBarState createState() => _AppBottomNavigationBarState();
 }
 
 class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
-  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +52,7 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
 
   Widget _buildTabItem(
     {AppBottomNavigationBarItem navigationBarItem, int index, ValueChanged<int> onPressed}) {
-    Color color = _selectedIndex == index ? widget.selectedColor : widget.color;
+    Color color = widget.selectedItemIndex == index ? widget.selectedColor : widget.color;
     return Expanded(
       child: SizedBox(
         height: widget.height,
@@ -76,9 +77,6 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
   }
 
   _updateSelectedItemIndex(int newSelectedItemIndex) {
-    //widget.onTabSelected(newSelectedItemIndex);
-    setState(() {
-      _selectedIndex = newSelectedItemIndex;
-    });
+  AppNotifier.of(context).handleTabItemPress(newSelectedItemIndex);
   }
 }
