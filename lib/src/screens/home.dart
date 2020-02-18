@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_list_app/src/notifiers/app_notifier.dart';
+import 'package:movies_list_app/src/screens/favourite_movies.dart';
+import 'package:movies_list_app/src/screens/popular_movies.dart';
 import 'package:movies_list_app/src/widgets/bottom_app_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -14,14 +16,11 @@ class MyHomeScreen extends StatefulWidget {
 class _MyHomeScreenState extends State<MyHomeScreen> {
 
 
-  var texts = [0, 1];
+  var screens = [PopularMoviesScreen(), FavouriteMoviesScreen()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       bottomNavigationBar: Consumer<AppNotifier>(
         builder: (context, appNotifier, _){
           return AppBottomNavigationBar(
@@ -36,7 +35,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
       body: Consumer<AppNotifier>(
         builder: (context, appNotifier, _){
           return Center(
-            child: Text('Page ${texts[appNotifier.selectedTabItemIndex]}')
+            child: screens[appNotifier.selectedTabItemIndex]
           );
         },
       ),
