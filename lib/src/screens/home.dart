@@ -19,7 +19,6 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
         title: Text(widget.title),
       ),
       bottomNavigationBar: AppBottomNavigationBar(
-        onTabSelected: _changeTab,
         items: [
           AppBottomNavigationBarItem(iconData: Icons.whatshot, text: 'All'),
           AppBottomNavigationBarItem(iconData: Icons.star, text: 'Favourites'),

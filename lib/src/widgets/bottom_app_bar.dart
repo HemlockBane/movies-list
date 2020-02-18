@@ -11,7 +11,6 @@ class AppBottomNavigationBarItem {
 }
 
 class AppBottomNavigationBar extends StatefulWidget {
-  final ValueChanged<int> onTabSelected;
   final List <AppBottomNavigationBarItem> items;
   final Color color;
   final Color selectedColor;
@@ -20,7 +19,7 @@ class AppBottomNavigationBar extends StatefulWidget {
 
 
   const AppBottomNavigationBar(
-    {this.onTabSelected, this.items, this.color = Colors.grey, this.selectedColor = Colors.black, this.height = 60, this.iconSize = 24});
+    {this.items, this.color = Colors.grey, this.selectedColor = Colors.black, this.height = 60, this.iconSize = 24});
 
   @override
   _AppBottomNavigationBarState createState() => _AppBottomNavigationBarState();
@@ -45,7 +44,7 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
       return _buildTabItem(
         navigationBarItem: widget.items[index],
         index: index,
-        onPressed: _updateSelectedIndex
+        onPressed: _updateSelectedItemIndex
       );
     });
   }
@@ -76,10 +75,10 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
     );
   }
 
-  _updateSelectedIndex(int index) {
-    widget.onTabSelected(index);
+  _updateSelectedItemIndex(int newSelectedItemIndex) {
+    //widget.onTabSelected(newSelectedItemIndex);
     setState(() {
-      _selectedIndex = index;
+      _selectedIndex = newSelectedItemIndex;
     });
   }
 }
