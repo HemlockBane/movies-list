@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_list_app/src/widgets/movie_card.dart';
 
 class PopularMoviesScreen extends StatefulWidget {
   @override
@@ -13,7 +14,11 @@ class _PopularMoviesScreenState extends State<PopularMoviesScreen> {
         title: Text('Popular Movies'),
       ),
       body: Container(
-        child: Center(child: Text('Popular')),
+        child: ListView.builder(
+          itemCount: 5,
+          itemBuilder: (context, itemIndex){
+          return MovieCard();
+        }),
       ),
     );
   }
