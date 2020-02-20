@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:movies_list_app/src/models/movie.dart';
+import 'package:movies_list_app/src/services/api_service.dart';
 import 'package:provider/provider.dart';
 
 class PopularMoviesNotifier with ChangeNotifier {
@@ -10,6 +11,7 @@ class PopularMoviesNotifier with ChangeNotifier {
 
   bool _isLoadingMovies = false;
   List<Movie> _movies = getDummyMovies();
+  ApiService _apiService = ApiService();
 
   bool get isLoadingMovies => _isLoadingMovies;
 
@@ -22,5 +24,10 @@ class PopularMoviesNotifier with ChangeNotifier {
     final movieIndex = _movies.indexOf(movie);
     _movies[movieIndex].toggleFavourite();
     notifyListeners();
+  }
+
+
+  getMovies()async{
+    _apiService.getMovies();
   }
 }

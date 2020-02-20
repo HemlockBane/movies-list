@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:movies_list_app/src/models/movie.dart';
 import 'package:movies_list_app/src/notifiers/popular_movies_notifier.dart';
 import 'package:movies_list_app/src/widgets/movie_card.dart';
@@ -10,6 +11,16 @@ class PopularMoviesScreen extends StatefulWidget {
 }
 
 class _PopularMoviesScreenState extends State<PopularMoviesScreen> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      PopularMoviesNotifier.of(context).getMovies();
+    });
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
