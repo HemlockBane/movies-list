@@ -19,6 +19,11 @@ class _PopularMoviesScreenState extends State<PopularMoviesScreen> {
       body: Container(
         child: Consumer<PopularMoviesNotifier>(
           builder: (context, moviesNotifier, _){
+            if(moviesNotifier.isLoadingMovies){
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
             return ListView.builder(
               itemCount: moviesNotifier.allMovies.length,
               itemBuilder: (context, itemIndex){
