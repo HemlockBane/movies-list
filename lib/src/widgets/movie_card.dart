@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_list_app/src/constants/strings.dart';
 import 'package:movies_list_app/src/models/movie.dart';
+import 'package:movies_list_app/src/notifiers/popular_movies_notifier.dart';
 import 'package:movies_list_app/src/screens/movie_details.dart';
+import 'package:provider/provider.dart';
 
 class MovieCard extends StatefulWidget {
   final Movie movie;
-  
+
   MovieCard({this.movie});
   @override
   _MovieCardState createState() => _MovieCardState();
@@ -51,14 +53,16 @@ class _MovieCardState extends State<MovieCard> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(widget.movie.voteAverage.toString()),
-                          IconButton(
-                            icon: Icon(widget.movie.isFavourite ? Icons.star : Icons.star_border),
-                            onPressed: (){
-                              setState(() {
-                                widget.movie.isFavourite = !widget.movie.isFavourite;
-                              });
-                            }
-                            )
+                          Consumer<PopularMoviesNotifier>(
+                            builder: (context, movieNotifier, _){
+                              return IconButton(
+                                icon: Icon(widget.movie.isFavourite ? Icons.star : Icons.star_border),
+                                onPressed: (){
+                                  PopularMoviesNotifier.of(context).toggleFavourite(movie: widget.movie);
+                                }
+                              );
+                            },
+                          )
                         ],
                       )
                     ],
@@ -84,5 +88,5 @@ class _MovieCardState extends State<MovieCard> {
       ),
     );
   }
-  
+
 }

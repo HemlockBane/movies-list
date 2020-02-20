@@ -30,6 +30,10 @@ class Movie {
 
   Movie.fromMap(Map json){}
 
+  void toggleFavourite(){
+    isFavourite = !isFavourite;
+  }
+
 
   Map<String, dynamic> toMap(){
     Map<String, dynamic> map = Map();
