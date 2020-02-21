@@ -10,7 +10,7 @@ class PopularMoviesNotifier with ChangeNotifier {
       Provider.of<PopularMoviesNotifier>(context, listen: false);
 
   bool _isLoadingMovies = false;
-  List<Movie> _movies = getDummyMovies();
+  List<Movie> _movies = [];
   ApiService _apiService = ApiService();
 
   bool get isLoadingMovies => _isLoadingMovies;
@@ -27,12 +27,16 @@ class PopularMoviesNotifier with ChangeNotifier {
   }
 
 
-  getMovies()async{
+  Future <void> getMovies() async {
+    _isLoadingMovies = true;
+    notifyListeners();
     try {
-     _movies = await _apiService.getMovies();
+      _movies = await _apiService.getMovies();
     }
     catch (e) {
       print(e);
     }
+    _isLoadingMovies = false;
+    notifyListeners();
   }
 }

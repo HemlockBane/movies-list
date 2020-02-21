@@ -39,7 +39,7 @@ class _MovieCardState extends State<MovieCard> {
                         children: <Widget>[
                           Row(
                             children: <Widget>[
-                              Text(widget.movie.title),
+                              Expanded(child: Text(widget.movie.title)),
                             ],
                           ),
                           Row(
