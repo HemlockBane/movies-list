@@ -32,8 +32,13 @@ class ApiService{
       final jsonString = response.body;
       final json = jsonDecode(jsonString);
       final moviesList = json['results'] as List;
-      log(moviesList[0].toString());
-      //log(json.toString());
+     movies = moviesList.map((movieMap){
+      var movie = Movie.fromMap(movieMap);
+      log('api_service.dart: movie - ${movie.toString()}');
+        return movie;
+      }).toList();
+      //log(moviesList[0].toString());
+
     }
 
 

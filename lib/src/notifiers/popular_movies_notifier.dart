@@ -28,6 +28,11 @@ class PopularMoviesNotifier with ChangeNotifier {
 
 
   getMovies()async{
-    _apiService.getMovies();
+    try {
+     _movies = await _apiService.getMovies();
+    }
+    catch (e) {
+      print(e);
+    }
   }
 }

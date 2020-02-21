@@ -28,7 +28,17 @@ class Movie {
 
   }
 
-  Movie.fromMap(Map json){}
+  Movie.fromMap(Map json){
+    id = json['id'];
+    title = json['title'];
+    originalTitle = json['original_title'];
+    releaseDate = DateTime.parse(json['release_date']);
+    posterPath = json['poster_path'];
+    backdropPath = json['backdrop_path'];
+    overView = json['overview'];
+    voteAverage = double.tryParse(json['vote_average'].toString()) ?? '0.0';
+    isFavourite = json['is_favourite'] ?? false;
+  }
 
   void toggleFavourite(){
     isFavourite = !isFavourite;
@@ -40,6 +50,13 @@ class Movie {
 
 
     return map;
+
+
+  }
+
+  @override
+  String toString() {
+    return'id - $id, title - $title';
   }
 }
 
