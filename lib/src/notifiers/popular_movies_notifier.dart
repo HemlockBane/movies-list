@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:movies_list_app/src/models/movie.dart';
 import 'package:movies_list_app/src/services/api_service.dart';
+import 'package:movies_list_app/src/services/local_db_service.dart';
 import 'package:provider/provider.dart';
 
 class PopularMoviesNotifier with ChangeNotifier {
@@ -13,6 +14,7 @@ class PopularMoviesNotifier with ChangeNotifier {
   List<Movie> _movies = [];
   List<Movie> _favouriteMovies = [];
   ApiService _apiService = ApiService();
+  LocalDbService _localDbService = LocalDbService();
 
   bool get isLoadingMovies => _isLoadingMovies;
 
@@ -29,6 +31,8 @@ class PopularMoviesNotifier with ChangeNotifier {
     if(isFavourite){
       _favouriteMovies.add(movie);
       //print(movie.toMap());
+      _localDbService.insertFavouriteMovie(favouriteMovie: movie);
+      _localDbService.getFavouriteMovies();
     }else{
       _favouriteMovies.remove(movie);
       //print(movie.toMap());
