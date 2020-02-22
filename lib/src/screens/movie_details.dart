@@ -31,8 +31,8 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                 children: <Widget>[
                   Expanded(
                     child: Container(
-                      height: 200,
-                      child: Image.network(Strings.flutterTestImage, fit: BoxFit.fill,),
+                      height: 400,
+                      child: Image.network(Strings.basePictureUrl+widget.movie.posterPath, fit: BoxFit.fill,),
                     ),
                   )
                 ],

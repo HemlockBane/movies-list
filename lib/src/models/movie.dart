@@ -57,7 +57,7 @@ class Movie {
 
   @override
   String toString() {
-    return'id - $id, title - $title, popularity - $popularity';
+    return'id - $id, title - $title, popularity - $popularity, poster path - $posterPath';
   }
 }
 

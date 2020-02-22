@@ -28,7 +28,7 @@ class _MovieCardState extends State<MovieCard> {
         child: Card(
           child: Row(
             children: <Widget>[
-              _buildImage(),
+              _buildImage(imagePath: widget.movie.posterPath),
               Expanded(
                 child: Container(
                   padding: EdgeInsets.only(top: 10),
@@ -82,7 +82,7 @@ class _MovieCardState extends State<MovieCard> {
       margin: EdgeInsets.only(right: 15),
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: NetworkImage(Strings.flutterTestImage),
+          image: NetworkImage(Strings.basePictureUrl+imagePath),
           fit: BoxFit.cover
         )
       ),
