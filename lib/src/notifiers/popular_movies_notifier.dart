@@ -24,6 +24,12 @@ class PopularMoviesNotifier with ChangeNotifier {
     final movieIndex = _movies.indexOf(movie);
     _movies[movieIndex].toggleFavourite();
     notifyListeners();
+    final isFavourite = _movies[movieIndex].isFavourite;
+    if(isFavourite){
+
+    }else{
+
+    }
   }
 
 
