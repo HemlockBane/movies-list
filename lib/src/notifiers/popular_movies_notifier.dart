@@ -39,4 +39,6 @@ class PopularMoviesNotifier with ChangeNotifier {
     _isLoadingMovies = false;
     notifyListeners();
   }
+
+
 }

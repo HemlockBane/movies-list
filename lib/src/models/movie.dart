@@ -38,6 +38,7 @@ class Movie {
     overView = json['overview'];
     voteAverage = double.tryParse(json['vote_average'].toString()) ?? '0.0';
     isFavourite = json['is_favourite'] ?? false;
+    popularity = double.tryParse(json['popularity'].toString()) ?? '0.0';
   }
 
   void toggleFavourite(){
@@ -56,7 +57,7 @@ class Movie {
 
   @override
   String toString() {
-    return'id - $id, title - $title';
+    return'id - $id, title - $title, popularity - $popularity';
   }
 }
 

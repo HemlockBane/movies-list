@@ -7,7 +7,7 @@ import 'package:movies_list_app/api_keys/api_keys.dart';
 
 class ApiService{
   http.Client _httpClient = http.Client();
-  final url = 'https://api.themoviedb.org/3/discover/movie?api_key=$apiKey';
+  final discoverMoviesUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=$apiKey&sort_by=popularity.desc';
 
 
 
@@ -15,7 +15,7 @@ class ApiService{
     http.Response response;
     List<Movie> movies = [];
     try {
-      response = await _httpClient.get(url);
+      response = await _httpClient.get(discoverMoviesUrl);
     }
     catch (e) {
       print(e);
