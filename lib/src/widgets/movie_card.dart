@@ -53,16 +53,16 @@ class _MovieCardState extends State<MovieCard> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(widget.movie.voteAverage.toString()),
-                          Consumer<PopularMoviesNotifier>(
-                            builder: (context, movieNotifier, _){
-                              return IconButton(
-                                icon: Icon(widget.movie.isFavourite ? Icons.star : Icons.star_border),
-                                onPressed: (){
-                                  PopularMoviesNotifier.of(context).toggleFavourite(movie: widget.movie);
-                                }
-                              );
-                            },
-                          )
+//                          Consumer<PopularMoviesNotifier>(
+//                            builder: (context, movieNotifier, _){
+//                              return IconButton(
+//                                icon: Icon(widget.movie.isFavourite ? Icons.star : Icons.star_border),
+//                                onPressed: (){
+//                                  PopularMoviesNotifier.of(context).toggleFavourite(movie: widget.movie);
+//                                }
+//                              );
+//                            },
+//                          )
                         ],
                       )
                     ],

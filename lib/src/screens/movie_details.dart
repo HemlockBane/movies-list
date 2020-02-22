@@ -53,7 +53,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
         },
         child: Consumer<PopularMoviesNotifier>(
           builder: (context, moviesNotifier, _){
-            //print(widget.movie.isFavourite.toString());
+            print(widget.movie.isFavourite.toString());
             return Icon(widget.movie.isFavourite ? Icons.star : Icons.star_border);
           },
 

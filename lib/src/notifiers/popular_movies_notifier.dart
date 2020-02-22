@@ -25,7 +25,7 @@ class PopularMoviesNotifier with ChangeNotifier {
   UnmodifiableListView<Movie> get favouriteMovies =>
       UnmodifiableListView(_favouriteMovies);
 
-  void toggleFavourite({Movie movie}) async{
+  void toggleFavourite({Movie movie, bool isFavouritesScreenDetails}) async{
     final movieIndex = _movies.indexOf(movie);
     _movies[movieIndex].toggleFavourite();
     notifyListeners();
@@ -33,12 +33,10 @@ class PopularMoviesNotifier with ChangeNotifier {
     if(isFavourite){
       _favouriteMovies.add(movie);
       print(movie.toMap());
-      _localDbService.insertFavouriteMovie(favouriteMovie: movie);
-     final faves = await _localDbService.getFavouriteMovies();
+      await _localDbService.insertFavouriteMovie(favouriteMovie: movie);
     }else{
       _favouriteMovies.remove(movie);
-      _localDbService.removeFavouriteMovie(favouriteMovie: movie);
-      final faves = await _localDbService.getFavouriteMovies();
+      await _localDbService.removeFavouriteMovie(favouriteMovie: movie);
     }
   }
 
