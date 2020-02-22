@@ -11,6 +11,7 @@ class PopularMoviesNotifier with ChangeNotifier {
 
   bool _isLoadingMovies = false;
   List<Movie> _movies = [];
+  List<Movie> _favouriteMovies = [];
   ApiService _apiService = ApiService();
 
   bool get isLoadingMovies => _isLoadingMovies;
@@ -18,7 +19,7 @@ class PopularMoviesNotifier with ChangeNotifier {
   UnmodifiableListView<Movie> get allMovies => UnmodifiableListView(_movies);
 
   UnmodifiableListView<Movie> get favouriteMovies =>
-      UnmodifiableListView(_movies.where((movie) => movie.isFavourite));
+      UnmodifiableListView(_favouriteMovies);
 
   void toggleFavourite({Movie movie}) {
     final movieIndex = _movies.indexOf(movie);
@@ -26,9 +27,9 @@ class PopularMoviesNotifier with ChangeNotifier {
     notifyListeners();
     final isFavourite = _movies[movieIndex].isFavourite;
     if(isFavourite){
-
+      _favouriteMovies.add(movie);
     }else{
-
+      _favouriteMovies.remove(movie);
     }
   }
 
