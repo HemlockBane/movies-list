@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_list_app/src/constants/strings.dart';
 import 'package:movies_list_app/src/models/movie.dart';
+import 'package:movies_list_app/src/notifiers/popular_movies_notifier.dart';
+import 'package:provider/provider.dart';
 
 class MovieDetailsScreen extends StatefulWidget {
   static const routeName = 'movie_details';
@@ -45,6 +47,18 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          PopularMoviesNotifier.of(context).toggleFavourite(movie: widget.movie);
+        },
+        child: Consumer<PopularMoviesNotifier>(
+          builder: (context, moviesNotifier, _){
+            print(widget.movie.isFavourite.toString());
+            return Icon(widget.movie.isFavourite ? Icons.star : Icons.star_border);
+          },
+
+        ),
+        ),
     );
   }
 }
