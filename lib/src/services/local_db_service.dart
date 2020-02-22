@@ -31,11 +31,6 @@ class LocalDbService {
     final db.Database db1 = await favouritesDb;
     final List<Map<String, dynamic>> maps = await db1.query(favouritesTable);
 
-
-    maps.forEach((element) {
-      print(element.toString());
-    });
-
     return List.generate(maps.length, (index){
       return Movie.fromMap(maps[index]);
     });

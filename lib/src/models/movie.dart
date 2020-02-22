@@ -43,7 +43,16 @@ class Movie {
 
 
   Movie.fromMap(Map json){
+    id = json['id'];
+    title = json['title'];
+    releaseDate = DateTime.parse(json['release_date']);
+    posterPath = json['poster_path'];
+    overView = json['overview'];
+    voteAverage = double.tryParse(json['vote_average'].toString()) ?? 0.0;
+    isFavourite = mapIntegerToBool(json['is_favourite']);
+    popularity = double.tryParse(json['popularity'].toString()) ?? 0.0;
   }
+
 
   Map<String, dynamic> toMap(){
     Map<String, dynamic> map = Map();
@@ -56,8 +65,14 @@ class Movie {
     map['popularity'] = popularity;
     map['is_favourite'] = isFavourite ? 1 : 0;
     return map;
+  }
 
+  bool mapIntegerToBool(int value){
+    if(value == 1) {
+      return true;
+    }
 
+    return false;
   }
 
 

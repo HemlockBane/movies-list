@@ -44,7 +44,7 @@ class _MovieCardState extends State<MovieCard> {
                           ),
                           Row(
                             children: <Widget>[
-                              Text(widget.movie.releaseDate.toIso8601String()),
+                              Text(widget.movie.releaseDate?.toIso8601String() ?? ' '),
                             ],
                           ),
                         ],
