@@ -28,8 +28,10 @@ class PopularMoviesNotifier with ChangeNotifier {
     final isFavourite = _movies[movieIndex].isFavourite;
     if(isFavourite){
       _favouriteMovies.add(movie);
+      //print(movie.toMap());
     }else{
       _favouriteMovies.remove(movie);
+      //print(movie.toMap());
     }
   }
 
