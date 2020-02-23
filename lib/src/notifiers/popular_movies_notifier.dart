@@ -49,7 +49,7 @@ class PopularMoviesNotifier with ChangeNotifier {
   }
 
 
-  Future <void> getMovies() async {
+  Future <List<Movie>> getMovies() async {
     _isLoadingMovies = true;
     notifyListeners();
     try {
@@ -60,6 +60,7 @@ class PopularMoviesNotifier with ChangeNotifier {
     }
     _isLoadingMovies = false;
     notifyListeners();
+    return _movies;
   }
 
   Future <void> getFavouriteMovies() async {
