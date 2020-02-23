@@ -40,8 +40,12 @@ class _MovieCardState extends State<MovieCard> {
                         children: <Widget>[
                           Row(
                             children: <Widget>[
-                              Expanded(child: Text(widget.movie.title,
-                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),)),
+                              Expanded(
+                                child: Container(
+                                  child: Text(widget.movie.title,
+                                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),),
+                                )
+                              ),
                             ],
                           ),
                           Row(
@@ -56,8 +60,13 @@ class _MovieCardState extends State<MovieCard> {
                         children: <Widget>[
                           Container(
                             child: Text(widget.movie.voteAverage.toString(), style: TextStyle(
-                              color: Colors.black54
-                            ),), padding: EdgeInsets.only(top: 3.0),
+                              color: Colors.white
+                            ),),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.black
+                            ),
+                            padding: EdgeInsets.fromLTRB(2.0, 5.0, 2.0, 5.0),
                           ),
                         ],
                       )

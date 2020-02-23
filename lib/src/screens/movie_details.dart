@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:movies_list_app/src/constants/strings.dart';
 import 'package:movies_list_app/src/models/movie.dart';
 import 'package:movies_list_app/src/notifiers/popular_movies_notifier.dart';
+import 'package:movies_list_app/src/services/format_service.dart';
 import 'package:provider/provider.dart';
 
 class MovieDetailsScreen extends StatefulWidget {
@@ -39,10 +40,25 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                   )
                 ],
               ),
-              Text(widget.movie.title),
-              Text(widget.movie.voteAverage.toString()),
-              Text(widget.movie.releaseDate.toIso8601String()),
-              Text(widget.movie.overView)
+              Text(widget.movie.title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.black
+                ),
+                margin: EdgeInsets.only(top: 5),
+                padding: EdgeInsets.all(5.0),
+                child: Text(widget.movie.voteAverage.toString(), style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
+
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 10),
+                child: Text(FormatService.formatDateOnly(widget.movie.releaseDate), style: TextStyle(fontSize: 13),)
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 10),
+                child: Text(widget.movie.overView)
+              )
             ],
           ),
         ),
