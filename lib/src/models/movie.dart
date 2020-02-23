@@ -31,14 +31,12 @@ class Movie {
   Movie.fromJson(Map json){
     id = json['id'];
     title = json['title'];
-    //originalTitle = json['original_title'];
     releaseDate = DateTime.parse(json['release_date']);
     posterPath = json['poster_path'];
-    //backdropPath = json['backdrop_path'];
     overView = json['overview'];
-    voteAverage = double.tryParse(json['vote_average'].toString()) ?? '0.0';
+    voteAverage = double.tryParse(json['vote_average'].toString()) ?? 0.0;
     isFavourite = json['is_favourite'] ?? false;
-    popularity = double.tryParse(json['popularity'].toString()) ?? '0.0';
+    popularity = double.tryParse(json['popularity'].toString()) ?? 0.0;
   }
 
 
@@ -83,7 +81,15 @@ class Movie {
 
   @override
   String toString() {
-    return'id - $id, title - $title, popularity - $popularity, poster path - $posterPath';
+    return''
+      'id - $id, '
+      'title - $title, '
+      'release_date - $releaseDate, '
+      'vote_average - $voteAverage, '
+      'poster_path - $posterPath, '
+      'overview = $overView, '
+      'popularity - $popularity, '
+      'is_favourite - $isFavourite';
   }
 }
 

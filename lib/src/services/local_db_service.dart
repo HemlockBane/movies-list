@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:movies_list_app/src/models/movie.dart';
 import 'package:sqflite/sqflite.dart' as db;
 import 'package:path/path.dart' as path;
@@ -32,6 +34,7 @@ class LocalDbService {
     final List<Map<String, dynamic>> maps = await db1.query(favouritesTable);
 
     return List.generate(maps.length, (index){
+      log(maps[index].toString());
       return Movie.fromMap(maps[index]);
     });
   }

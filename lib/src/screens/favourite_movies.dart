@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:movies_list_app/src/notifiers/popular_movies_notifier.dart';
@@ -35,6 +37,7 @@ class _FavouriteMoviesScreenState extends State<FavouriteMoviesScreen> {
                 child: CircularProgressIndicator(),
               );
             }
+            log(' favourite movies: ${moviesNotifier.favouriteMovies.length}');
             return ListView.builder(
               itemCount: moviesNotifier.favouriteMovies.length,
               itemBuilder: (context, itemIndex){

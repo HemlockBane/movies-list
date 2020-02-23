@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:movies_list_app/src/models/movie.dart';
@@ -25,19 +26,26 @@ class PopularMoviesNotifier with ChangeNotifier {
   UnmodifiableListView<Movie> get favouriteMovies =>
       UnmodifiableListView(_favouriteMovies);
 
+
   void toggleFavourite({Movie movie, bool isFavouritesScreenDetails}) async{
     final movieIndex = _movies.indexOf(movie);
+    //log('popular_movies_notifier.dart: is in movies ${_movies.contains(movie).toString()}');
+    //log('popular_movies_notifier.dart: ${movie.toString()}');
+    //log('popular_movies_notifier.dart: movies index - $movieIndex');
     _movies[movieIndex].toggleFavourite();
     notifyListeners();
     final isFavourite = _movies[movieIndex].isFavourite;
     if(isFavourite){
       _favouriteMovies.add(movie);
-      print(movie.toMap());
+      //log('${_favouriteMovies.length}');
+      //print(movie.toMap());
       await _localDbService.insertFavouriteMovie(favouriteMovie: movie);
     }else{
       _favouriteMovies.remove(movie);
       await _localDbService.removeFavouriteMovie(favouriteMovie: movie);
     }
+
+    notifyListeners();
   }
 
 
