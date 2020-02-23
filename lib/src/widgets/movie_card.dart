@@ -4,6 +4,7 @@ import 'package:movies_list_app/src/constants/strings.dart';
 import 'package:movies_list_app/src/models/movie.dart';
 import 'package:movies_list_app/src/notifiers/popular_movies_notifier.dart';
 import 'package:movies_list_app/src/screens/movie_details.dart';
+import 'package:movies_list_app/src/services/format_service.dart';
 import 'package:provider/provider.dart';
 
 class MovieCard extends StatefulWidget {
@@ -39,12 +40,12 @@ class _MovieCardState extends State<MovieCard> {
                         children: <Widget>[
                           Row(
                             children: <Widget>[
-                              Expanded(child: Text(widget.movie.title)),
+                              Expanded(child: Text(widget.movie.title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),)),
                             ],
                           ),
                           Row(
                             children: <Widget>[
-                              Text(widget.movie.releaseDate?.toIso8601String() ?? ' '),
+                              Text(FormatService.formatDateOnly(widget.movie.releaseDate) ?? ' '),
                             ],
                           ),
                         ],
