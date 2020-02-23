@@ -34,13 +34,14 @@ class _MovieCardState extends State<MovieCard> {
                 child: Container(
                   padding: EdgeInsets.only(top: 10),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Column(
                         children: <Widget>[
                           Row(
                             children: <Widget>[
-                              Expanded(child: Text(widget.movie.title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),)),
+                              Expanded(child: Text(widget.movie.title,
+                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),)),
                             ],
                           ),
                           Row(
@@ -53,17 +54,11 @@ class _MovieCardState extends State<MovieCard> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Text(widget.movie.voteAverage.toString()),
-//                          Consumer<PopularMoviesNotifier>(
-//                            builder: (context, movieNotifier, _){
-//                              return IconButton(
-//                                icon: Icon(widget.movie.isFavourite ? Icons.star : Icons.star_border),
-//                                onPressed: (){
-//                                  PopularMoviesNotifier.of(context).toggleFavourite(movie: widget.movie);
-//                                }
-//                              );
-//                            },
-//                          )
+                          Container(
+                            child: Text(widget.movie.voteAverage.toString(), style: TextStyle(
+                              color: Colors.black54
+                            ),), padding: EdgeInsets.only(top: 3.0),
+                          ),
                         ],
                       )
                     ],
